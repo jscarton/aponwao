@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- aponwao application configuration -->
+<application>
+	<setup>
+		<codeName></codeName>
+		<title></title>
+		<enabled>true</enabled>
+		<debug>true</debug>
+		<data>true</data>
+		<security>false</security>			
+		<webservices>true</webservices>	
+	</setup>
+	<controllers>
+		<defaultController>main</defaultController>
+		<main>
+			<defaultAction>holaMundo</defaultAction>
+			<actions>
+				<holaMundo>HolaMundoAction</holaMundo>				
+			</actions>			
+		</main>		
+	</controllers>
+	<webservices>
+		<providers>
+			<!-- agrega a la lista de servicios todas las clases contenidas en el paquete indicado -->
+			<servicePackage>classes.ws</servicePackage>
+			<!-- agrega un paquete de clases al classpath de webservices -->
+			<!-- <classPackage></classPackage> -->
+		</providers>
+		<clients>
+			<!--Para definir un cliente de webservices debes definir un alias de webservices
+				un alias es una descripción de los parametros necesarios para comunicarse e interactuar
+				con un servicio.
+				
+				Aponwao PHP Framework viene con un servicio ya creado y listo para ser probado.
+				Solo debes darle permisos de escritura al usuario de APACHE en la carpeta cache
+				y descomentar la definicion del siguiente alias (no olvides apuntar la dirección correcta)			
+			<holamundo>			
+				<protocol>http</protocol>			
+				<wsdl>localhost/dev/aponwao-google/services/HolaMundoService/wsdl</wsdl>
+			</holamundo>-->
+		</clients>
+	</webservices>
+	<handlers>
+		<requestHandler>
+			<className>CVBasicRequestHandler</className>			
+		</requestHandler>
+		<sessionHandler>
+			<className>CVEncodedSessionHandler</className>			
+		</sessionHandler>
+		<debugHandler>
+			<className>CVBasicDebugHandler</className>
+			<params>
+				<defaultLevel>0</defaultLevel>
+				<defaultFormat>xml</defaultFormat>		
+			</params>
+		</debugHandler>		
+	</handlers>
+</application>
