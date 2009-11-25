@@ -1,3 +1,4 @@
+#summary Introducción a los Frameworks PHP
 = Contenido Bloqueado =
 
 _*El administrador ha bloqueado el contenido de esta sección.*_
