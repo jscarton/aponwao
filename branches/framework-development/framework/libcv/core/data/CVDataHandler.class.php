@@ -22,29 +22,24 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 /**
- * Esta es una acción que presenta información de la aplicación
+ * Esta clase implementa la abstracción de acción en Aponwao Framework
  * @author Juan Scarton
- * @version 03/07/2009
- * @package ORG::APONWAO::APP
+ * @version 09/02/2010
+ * @package CORE.DATA
  */
-class AponwaoInfoAction extends CVActionHandler
-{	
+abstract class CVActionHandler extends CVObject
+{
+	public $request;
+	public $session;
+	public $datamanager;
 	/**
 	 * constructor por defecto modifique segun sea necesario
 	 * @return CVActionHandler
 	 */
 	public function __construct()
-	{
-		parent::__construct();			
+	{			
+		$this->request=getRequest();
+		$this->session=getSession();
+		$this->datamanager=getDataManager();
 	}
-	/**
-	 * Este metodo es el punto de inicio de la acción.
-	 */
-	public function doIt()
-	{						
-		echo "INFO DE LA APLICACION";				
-	}
-	
-		 
 }
-?>

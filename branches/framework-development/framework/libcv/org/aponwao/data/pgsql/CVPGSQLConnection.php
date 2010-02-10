@@ -25,7 +25,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+/**
+ * Esta clase implementa la interfaz CVDataConnection para el RDBMS PostgreSQL
+ * @author Juan Scarton
+ * @version 01/06/2009
+ * @package ORG.APONWAO.DATA.PGSQL
+ */
 class CVPGSQLConnection extends CVObject implements CVDataConnection{
 
     /**
@@ -39,8 +44,7 @@ class CVPGSQLConnection extends CVObject implements CVDataConnection{
      */    
     private $lastResult;
 
-
-    public function __construct($conex)
+	public function __construct($conex)
     {
     	
         //observese que se accede a los tags como si fueran atributos del objeto CVXMLElement $conex
@@ -80,7 +84,10 @@ class CVPGSQLConnection extends CVObject implements CVDataConnection{
             throw new CVException("ha ocurrido un error al inicializar la conexión a la BD");
         }
     }
-       
+    /**
+     * (non-PHPdoc)
+     * @see libcv/core/data/CVDataConnection#doQuery($sql)
+     */  
     public function doQuery($sql)
     {
         $res=pg_query($this->con,$sql);
@@ -90,10 +97,28 @@ class CVPGSQLConnection extends CVObject implements CVDataConnection{
         	throw new CVException ("Error ejecutando consulta a la bd:".pg_result_error($res));
         return new CVPGSQLRecordSet ($this->lastResult);
     }
-
-    public function doInsert($table,$colnames,$values)
+	/**
+	 * (non-PHPdoc)
+	 * @see libcv/core/data/CVDataConnection#doInsert($table, $values)
+	 */
+    public function doInsert($table,$values)
     {
-        $res=pg_query($this->con,"insert into $table ($colnames) values ($values)");
+    if (!$table || !$values || !is_array($values))
+			throw new CVException ("Error de formato en parametros en doInsert");
+		$columns="";
+		$values_list="";
+		foreach($values as $field=>$value)
+		{
+			if ($columns=="")
+				$columns=$field;
+			else
+				$columns.=",".$field;
+			if ($value_list=="")
+				$value_list="'$value'";
+			else
+				$value_list.=",'$value'";
+		}
+        $res=pg_query($this->con,"insert into $table ($columns) values ($value_list)");
         if (!pg_result_error($res))
         	$this->lastResult=$res;
         else
@@ -103,10 +128,23 @@ class CVPGSQLConnection extends CVObject implements CVDataConnection{
         else
         	return false;
     }
-
+	/**
+	 * (non-PHPdoc)
+	 * @see libcv/core/data/CVDataConnection#doUpdate($table, $values, $whereClause)
+	 */
     public function doUpdate($table,$valuesList,$whereClause)
     {
-        $res=pg_query($this->con,"update $table set $valuesList where $whereClause");
+    	if (!$table || !$values || !is_array($values))
+			throw new CVException ("Error de formato en parametros en doUpdate");
+		$values_list="";
+		foreach($values as $field=>$value)
+		{
+			if ($value_list=="")
+				$value_list="$field='$value'";
+			else
+				$value_list=",$field='$value'";
+		}
+        $res=pg_query($this->con,"update $table set $value_list where $whereClause");
         if (!pg_result_error($res))
         	$this->lastResult=$res;
         else
@@ -116,7 +154,10 @@ class CVPGSQLConnection extends CVObject implements CVDataConnection{
         else
         	return false;
     }
-
+	/**
+	 * (non-PHPdoc)
+	 * @see libcv/core/data/CVDataConnection#doDelete($table, $whereClause)
+	 */
     public function doDelete($table,$whereClause)
     {
         $res=pg_query($this->con,"delete from $table where $whereClause");
@@ -129,7 +170,10 @@ class CVPGSQLConnection extends CVObject implements CVDataConnection{
         else
         	return false;
     }
-    
+    /**
+     * (non-PHPdoc)
+     * @see libcv/core/data/CVDataConnection#lastId()
+     */
     public function lastId()
     {
     	$query = 'SELECT LASTVAL() AS insert_id';
@@ -145,11 +189,7 @@ class CVPGSQLConnection extends CVObject implements CVDataConnection{
             return -1;
          }
 
-    }
-    
-  /*  $query = 'SELECT LASTVAL() AS insert_id';
-     $result = @pg_query($query); 
-     $insert_id = @pg_fetch_array($result, NULL, PGSQL_ASSOC);*/
+    }  
 }
 
 ?>

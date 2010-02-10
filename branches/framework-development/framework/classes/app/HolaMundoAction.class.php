@@ -29,33 +29,28 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * @package CLASSES::APP
  */
 class HolaMundoAction extends CVActionHandler
-{	
-	/**
-	 * constructor por defecto modifique segun sea necesario
-	 * @return CVActionHandler
-	 */
-	public function __construct()
-	{
-		parent::__construct();			
-	}
+{
 	/**
 	 * Este metodo es el punto de inicio de la acción.
 	 */
 	public function doIt()
-	{							
-		try{
+	{									
+		try{			
+			$this->set('title',"Bienvenido a Aponwao Framework");
 			$serviceClient=new CVSOAPClient("holamundo");
 			if (!$serviceClient->getError())
 			{
 				if($serviceClient->callIt("holaMundo")==WS_OK)
-					$msg=$serviceClient->getResult();
+					$this->set('msg',$serviceClient->getResult());
 				elseif ($serviceClient->getError())
-					$err="Error:".$serviceClient->getError();
+					$this->set('err',"Error:".$serviceClient->getError());
 				elseif ($serviceClient->getFault())
-					$err= "Error:".$serviceClient->getFault();
-				//incluimos el archivo que contiene la vista
-				include	"resources/php/holamundo.php";		
-			}	
+					$this->set('err',"Error:".$serviceClient->getFault());				
+			}
+			else
+				$this->set('err',"Error:".$serviceClient->getError());
+			//genera la salida HTML
+			$this->show();					
 		}
 		catch (Exception  $ex)
 		{

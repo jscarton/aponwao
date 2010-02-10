@@ -21,6 +21,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
+/**
+ * Esta clase implementa un Session Handler básico que codifica claves y el contenido de la sesion usando encoding base64
+ * @author Juan Scarton
+ * @version 01/06/2009
+ * @package ORG.APONWAO.APP
+ */
 class CVEncodedSessionHandler extends CVObject implements CVSessionHandler{		
 	/**
 	 * codifica un valor dado utilizando la codificación base64
@@ -44,7 +50,7 @@ class CVEncodedSessionHandler extends CVObject implements CVSessionHandler{
 	 * (non-PHPdoc)
 	 * @see libcv/core/app/CVSessionHandler#retrieveIt()
 	 */
-	public function retrieveIt($key)
+	public function get($key)
 	{
 		if ($this->isDefined($key))
 			return 	$this->decode($_SESSION[$this->encode($key)]);
@@ -55,7 +61,7 @@ class CVEncodedSessionHandler extends CVObject implements CVSessionHandler{
 	 * (non-PHPdoc)
 	 * @see libcv/core/app/CVSessionHandler#storeIt()
 	 */
-	public function storeIt($key,$value)
+	public function set($key,$value)
 	{
 		$key=$this->encode($key);
 		$value=$this->encode($value);
@@ -76,12 +82,27 @@ class CVEncodedSessionHandler extends CVObject implements CVSessionHandler{
 	 * (non-PHPdoc)
 	 * @see libcv/core/app/CVSessionHandler#retriveAll()
 	 */
-	public function retrieveAll()
+	public function getAll()
 	{
 		$ret=false;
 		foreach ($_SESSION as $key=>$value)
 			$ret[$this->decode($key)]=$this->decode($value);
 		return $ret;
+	}
+	
+	public function _unset($key)
+	{
+		if ($this->isDefined($key))
+		{
+			unset($_SESSION[$this->encode($key)]);
+			return 	true;
+		}
+		else
+			return false;
+	}
+	public function _unsetAll()
+	{
+		return session_destroy();
 	}
 }
 

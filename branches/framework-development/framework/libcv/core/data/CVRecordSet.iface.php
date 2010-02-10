@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * Interface que define los metodos necesarios para manipular la data obtenida a trav�s de una sentencia SQL
  * @author Sa�l Bautista
  * @version 19/06/2009
- * @package CORE::DATA
+ * @package CORE.DATA
  */
 interface CVRecordSet
 {

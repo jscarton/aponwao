@@ -31,7 +31,7 @@ define("WS_OK",2);
  * Esta clase implementa un cliente para Webservices basados en SOAP
   * @author Juan Scarton
  * @version 01/07/2009
- * @package CORE::WS::CLIENT
+ * @package CORE.WS.CLIENT
  */
 class CVSOAPClient extends CVObject{
 	/**
@@ -79,7 +79,7 @@ class CVSOAPClient extends CVObject{
 		if (isset($params->password))
 			$password=(string)$params->password;
 		if (isset($params->wsdl))
-			$wsdl=$params->wsdl;
+			$wsdl=str_replace('APP_BASE_URL',APP_BASE_URL,(string)$params->wsdl);
 		else
 			throw new CVException ("error no se puede crear un cliente SOAP sin especificar la URL del archivo WSDL");
 		if (isset($params->protocol))
@@ -210,5 +210,18 @@ class CVSOAPClient extends CVObject{
 		{
 			print_r($this->nusoapClient);	
 		}
+		public function getHTTPRequest()
+		{
+			return htmlspecialchars($this->nusoapClient->request, ENT_QUOTES); 
+		}
+		public function getHTTPResponse()
+		{
+			return htmlspecialchars($this->nusoapClient->response, ENT_QUOTES); 
+		}
+		public function getTrace()
+		{
+			return htmlspecialchars($this->nusoapClient->debug_str, ENT_QUOTES); 
+		}
+		
 } 
 ?>

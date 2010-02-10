@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * en Aponwao Framework.
  * @author Juan Scarton
  * @version 01/06/2009
- * @package CORE:APP
+ * @package CORE.APP
  */
 interface CVSessionHandler{
 	/**
@@ -42,17 +42,28 @@ interface CVSessionHandler{
 	 * @param $value el valor de la variable de sesion
 	 * @return void
 	 */
-	public function storeIt($key,$value);
+	public function set($key,$value);
 	/**
 	 * devuelve el valor de una variable de sesión
 	 * @param $key el nombre de la variable de sesion
 	 * @return var depende del valor almacenado en la sesión
 	 */
-	public function retrieveIt($key);
+	public function get($key);
 	/**
 	 * devuelve un arreglo con todas las variables de sesion
 	 * @return array si no existen variables de session almacenadas devuelve false
 	 */
-	public function retrieveAll();
+	public function getAll();
+	/**
+	 * destruye una variable de sesion
+	 * @param $key clave de la variable de sesion a destruir
+	 * @return boolean devuelve true si tuvo exito o falso en caso contrario
+	 */
+	public function _unset($key);
+	/**
+	 * destruye todas las variables de sesion
+	 * @return boolean devuelve true si tuvo exito o falso en caso contrario
+	 */
+	public function _unsetAll();
 }
 ?>

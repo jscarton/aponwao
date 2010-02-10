@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- aponwao application configuration -->
+<!-- aponwao application settings -->
 <application>
 	<setup>
-		<codeName></codeName>
-		<title></title>
+		<codeName>aponwao</codeName>
+		<title>BIENVENIDO A APONWAO FRAMEWORK</title>
 		<enabled>true</enabled>
-		<debug>true</debug>
 		<data>true</data>
+		<debug>false</debug>		
 		<security>false</security>			
-		<webservices>true</webservices>	
+		<webservices>true</webservices>			
 	</setup>
 	<controllers>
 		<defaultController>main</defaultController>
 		<main>
-			<defaultAction>holaMundo</defaultAction>
+			<defaultAction>index</defaultAction>
 			<actions>
-				<holaMundo>HolaMundoAction</holaMundo>				
-			</actions>			
-		</main>		
+				<index>HolaMundoAction</index>				
+			</actions>
+		</main>
 	</controllers>
 	<webservices>
 		<providers>
@@ -32,12 +32,13 @@
 				con un servicio.
 				
 				Aponwao PHP Framework viene con un servicio ya creado y listo para ser probado.
-				Solo debes darle permisos de escritura al usuario de APACHE en la carpeta cache
-				y descomentar la definicion del siguiente alias (no olvides apuntar la dirección correcta)			
+				para una lista de las opciones de configuracion de un cliente WS por favor
+				dirigirse a la documentacion del proyecto aponwao			
+			-->
 			<holamundo>			
 				<protocol>http</protocol>			
-				<wsdl>localhost/dev/aponwao-google/services/HolaMundoService/wsdl</wsdl>
-			</holamundo>-->
+				<wsdl>APP_BASE_URL/services/HolaMundoService/wsdl</wsdl>
+			</holamundo>
 		</clients>
 	</webservices>
 	<handlers>

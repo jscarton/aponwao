@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * Clase que implementa la interfaz CVDataConnection para POSTGRESQL
  * @author Saul Bautista
  * @version 19/06/2009
- * @package ORG::APONWAO::DATA::PGSQL
+ * @package ORG.APONWAO.DATA.PGSQL
  */
 class CVPGSQLRecordSet extends CVObject implements CVRecordSet{
 	
