@@ -1,0 +1,7 @@
+<div id="terminal_container"></div>
+<script type="text/javascript" src="http://${APP_BASE_URL}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="http://${APP_BASE_URL}/resources/js/jquery.terminal.js"></script>
+<script type="text/javascript">
+	$('#terminal_container').height($(document).height());
+	$('#terminal_container').terminal('developer/shell/interpreter', {custom_prompt : "aponwao&gt; ", hello_message : '<img src="resources/images/a-logo.png"/><br/>[Aponwao Developer\'s Shell]<br/>ejecute el comando \'ayuda\' para obtener una lista de los comandos de la consola'});
+</script>
