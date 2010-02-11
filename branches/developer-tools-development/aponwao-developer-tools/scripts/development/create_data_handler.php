@@ -38,7 +38,7 @@ Esta clase ha sido generada usando aponwao-developer-tools (aponwaophp.org)
  * Escriba aqui la descripción de la clase de data
  * @author 
  * @version 
- * @package CLASSES.APP
+ * @package CLASSES.DATA
  */
 class ".$nueva_clase."Data extends CVDataHandler
 {
