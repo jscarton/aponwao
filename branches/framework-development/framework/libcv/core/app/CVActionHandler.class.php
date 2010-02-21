@@ -89,10 +89,10 @@ abstract class CVActionHandler extends CVObject
 				$method=$this->request->getMethod();
 				if (!$action)
 					$action="index";
-				if (!$method)
+				if (!$method || $method=="doIt")
 					$file=APP_ROOT."/resources/atpl/$controller/$action.html";
 				else
-					$file=APP_ROOT."/resources/atpl/$controller/$action_$method.html";								
+					$file=APP_ROOT."/resources/atpl/$controller/$action-$method.html";
 				if (file_exists($file))
 					$this->view->setTemplate($file);
 				else
