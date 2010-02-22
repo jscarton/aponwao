@@ -52,6 +52,10 @@ class CVPropelConnection extends CVObject
 			throw $e;
 		}
 	}
+	/**
+	 * obtiene el enlace con PROPEL
+	 * @return unknown_type
+	 */
 	public function getConnection()
 	{
 		return $this->con;	

@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * Esta clase implementa un Request Handler básico que recibe sus variables por POST. Internamente lee el arreglo $_POST
  * @author Juan Scarton
  * @version 01/06/2009
- * @package ORG::APONWAO::APP
+ * @package ORG.APONWAO.APP
  */
 class CVPostRequestHandler extends CVObject implements CVRequestHandler{
 /**

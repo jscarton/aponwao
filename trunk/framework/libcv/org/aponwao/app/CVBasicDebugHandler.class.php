@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * Define un manejador de trazas de ejecución en memoria
  * @author Juan Scarton
  * @version 01/06/2009
- * @package CORE:APP
+ * @package ORG.APONWAO.APP
  */
 class CVBasicDebugHandler extends CVObject implements CVDebugHandler{
 	/**

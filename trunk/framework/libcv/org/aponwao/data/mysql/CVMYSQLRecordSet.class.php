@@ -25,7 +25,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * Clase que implementa la interfaz CVDataConnection para MySQL
  * @author Saul Bautista
  * @version 19/06/2009
- * @package ORG::APONWAO::DATA::MYSQL
+ * @package ORG.APONWAO.DATA.MYSQL
+ */
+
+/**
+ * Esta clase implementa la interfaz CVRecordSet para el RDBMS MYSQL
+ * @author Juan Scarton
+ * @version 01/06/2009
+ * @package ORG.APONWAO.DATA.MYSQL
  */
 class CVMYSQLRecordSet extends CVObject implements CVRecordSet{
 	

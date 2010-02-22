@@ -55,7 +55,7 @@ define(LEVEL_SPECIAL,2,false);
  * en Aponwao Framework.
  * @author Juan Scarton
  * @version 01/06/2009
- * @package CORE:APP
+ * @package CORE.APP
  */
 interface CVDebugHandler{	 
 	/**

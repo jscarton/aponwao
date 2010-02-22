@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * en Aponwao Framework.
  * @author Juan Scarton
  * @version 01/06/2009
- * @package CORE:APP
+ * @package CORE.APP
  */
 interface CVRequestHandler{
 	/**
@@ -40,12 +40,12 @@ interface CVRequestHandler{
 	 * @param $key el nombre de la variable en la solicitud HTTP
 	 * @return var el valor de la variable key si esta definida si no existe key debe capturar una excepción de VARIABLE DE REQUEST HTTP NO DEFINIDA 
 	 */
-	public static function getRequestVar($key);
+	public static function get($key);
 	/**
 	 * devuelve un array con todas las variables de una solicitud HTTP dada o no una lista de claves (keys)
 	 * @return array devuelve todas las variables de la lista si no se especifica una lista devuelve todas las variables de la consulta. Si no existe alguna o algunas de las variables solicitadas debe capturar una excepción de VARIABLE DE REQUEST HTTP NO DEFINIDA
 	 */
-	public static function getRequestVars($var_list=false);
+	public static function getAll($var_list=false);
 	/**
 	 * devuelve el nombre del controller a ejecutar
 	 * @return string

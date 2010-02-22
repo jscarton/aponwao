@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * Esta clase implementa un Request Handler básico que recibe sus variables tanto por POST como por GET. Internamente lee el arreglo $_REQUEST
  * @author Juan Scarton
  * @version 01/06/2009
- * @package ORG::APONWAO::APP
+ * @package ORG.APONWAO.APP
  */
 class CVBasicRequestHandler extends CVObject implements CVRequestHandler{
 	/**
@@ -35,8 +35,7 @@ class CVBasicRequestHandler extends CVObject implements CVRequestHandler{
 	public function __construct()
 	{
 		if (isset ($_GET['getstring']))
-		{
-			echo $_GET['getstring'];
+		{			
 			$strings=explode(" ",$_GET['getstring']);
 			$c=count($strings);
 			$i=0;
@@ -62,7 +61,7 @@ class CVBasicRequestHandler extends CVObject implements CVRequestHandler{
 	 * (non-PHPdoc)
 	 * @see libcv/core/app/CVRequestHandler#getRequestVar()
 	 */	
-	public static function getRequestVar($key)
+	public static function get($key)
 	{
 		if (self::isDefined($key))
 			return $_REQUEST["$key"];
@@ -73,7 +72,7 @@ class CVBasicRequestHandler extends CVObject implements CVRequestHandler{
 	 * (non-PHPdoc)
 	 * @see libcv/core/app/CVRequestHandler#getRequestVars()
 	 */	
-	public static function getRequestVars($var_list=false)
+	public static function getAll($var_list=false)
 	{
 		$ret=array();
 		if (!$var_list)

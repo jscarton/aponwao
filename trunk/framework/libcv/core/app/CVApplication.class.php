@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * Esta clase implementa la abstracción de acción en Aponwao Framework
  * @author Juan Scarton
  * @version 01/06/2009
- * @package CORE::APP
+ * @package CORE.APP
  */
 class CVApplication extends CVObject
 {
@@ -181,6 +181,7 @@ class CVApplication extends CVObject
 			$this->__SESSION=CVSingleton::getInstance("CVSessionHandler",$params,$className);										
 		}						
 	}	
+	
 	/**
 	 * inicia la ejecución de la aplicación
 	 * @return void
@@ -189,11 +190,14 @@ class CVApplication extends CVObject
 	{	
 		try{
 				//punto de inicio de la ejecución de la aplicación
+				define('APPCODENAME',$this->getAppCodeName());
+				define('APPTITLE',$this->getAppTitle());
 				$request=getRequest();
 				$controller=$request->getController();
 				$action=$request->getAction();
-				$method=$request->getMethod();
+				$method=$request->getMethod();				
 				$className=$this->getControllerClass($controller,$action);
+				//echo "$controller::$action::$method -> $className";
 				if (!$className)
 					throw new CVException("Error: No se puede mapear la clase Action para el controlador $controller, puede que el mismo no exista o este mal definido o que la accion que intenta ejecutar ($action) no este definida");
 				else
@@ -214,8 +218,11 @@ class CVApplication extends CVObject
 						{
 							throw $ex;
 						}
-					} 
+					}					
+					if ($obj->getRenderedContent())
+						$obj->render(); 
 				}
+				
 		}		
 		catch (Exception $ex)
 		{
@@ -335,6 +342,6 @@ class CVApplication extends CVObject
 	public function getAppCodeName()
 	{
 		return (string) $this->appConf->setup->codeName;
-	}
+	}	
 }
 ?>

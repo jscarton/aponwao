@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //incluye las principales rutas de inclusión
 $includePaths=array(
 						"/usr/share/php/propel",
+						"/usr/share/php/propel/util",
 						"/usr/share/php",
 						APP_ROOT,
 						APP_ROOT."/classes",
@@ -103,7 +104,20 @@ function autoCargaNusoap($classname)
 	require_once "lib/nusoap/nusoap.php";
 }
 
+/**
+ * función de autocarga para las clases de PHP y PEAR en Linux
+ * @param string $classname
+ */
+function autoCargaPHPLinux($classname)
+{	
+		buscarClase("/usr/share/php/",$classname);
+}
+
 spl_autoload_extensions(".class.php,.php,.inc");
 spl_autoload_register('autoCarga');
 spl_autoload_register('autoCargaNusoap');
+spl_autoload_register('autoCargaPHPLinux');
+
+define("APP_BASE_URL",getAppURL());
+
   ?>

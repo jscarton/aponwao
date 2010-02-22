@@ -97,4 +97,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 		else
 			return false;
 	}
+/**
+ * Obtiene la APP_BASE_URL 
+ * @return string retorna la direccion URL base de la aplicacion
+ */
+	function getAppURL()
+	{	
+		return str_replace("/index.php","",$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']);
+		
+	}
 ?>
