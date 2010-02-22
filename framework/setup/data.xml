@@ -37,7 +37,7 @@
 			<user>root</user>
 			<password>root</password>									
 		</default>
-		-->
+		-->		
 	</databases>
 	<!-- conectores a diversos DBMS el desarrollador puede definir uno propio
 	si lo desea sin alterar el código del framework lo define aqui-->

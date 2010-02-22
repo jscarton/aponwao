@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * Esta clase implementa un Manejador de Instancias de Conexiones de Datos
  * @author Juan Scarton
  * @version 01/06/2009
- * @package CORE::DATA
+ * @package CORE.DATA
  */
 class CVDataManager extends CVObject
 {
@@ -93,6 +93,16 @@ class CVDataManager extends CVObject
 			return $this->dataBases->$alias;
 		else
 			return false;
+	}
+	
+	/**
+	 * obtiene los parametros de configuración de una conexión a base de datos
+	 * @param $alias
+	 * @return unknown_type
+	 */
+	public function propel($alias)
+	{
+		return $this->getConnection($alias);
 	}
 	
 }

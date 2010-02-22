@@ -25,7 +25,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+/**
+ * Esta clase implementa la interfaz CVDataConnection para el RDBMS MYSQL
+ * @author Rafael Vivas
+ * @version 01/06/2009
+ * @package ORG.APONWAO.DATA.MYSQL
+ */
 class CVMYSQLConnection extends CVObject implements CVDataConnection{
 
 	/**
@@ -64,6 +69,11 @@ class CVMYSQLConnection extends CVObject implements CVDataConnection{
 	 */
 	private $lastResult;
 
+	/**
+	 * constructor por defecto, recibe los parametros necesarios para establecer la conexion
+	 * @param $conex
+	 * @return unknown_type
+	 */
 	public function __construct($conex)
 	{
 			
@@ -103,6 +113,10 @@ class CVMYSQLConnection extends CVObject implements CVDataConnection{
 		}
 	}
 
+	/**
+	 * (non-PHPdoc)
+	 * @see libcv/core/data/CVDataConnection#doQuery($sql)
+	 */
 	public function doQuery($sql)
 	{
 		$res=mysql_query($sql,$this->con);
@@ -114,10 +128,28 @@ class CVMYSQLConnection extends CVObject implements CVDataConnection{
         	throw new CVException ("Error ejecutando consulta a la bd:".mysql_error($this->con));		
         return new CVMYSQLRecordSet ($this->lastResult);
 	}
-
-	public function doInsert($table,$colnames,$values)
+	/**
+	 * (non-PHPdoc)
+	 * @see libcv/core/data/CVDataConnection#doInsert($table, $values)
+	 */
+	public function doInsert($table=false,$values=false)
 	{
-        $res=mysql_query("insert into $table ($colnames) values ($values)",$this->con);
+		if (!$table || !$values || !is_array($values))
+			throw new CVException ("Error de formato en parametros en doInsert");
+		$columns="";
+		$value_list="";
+		foreach($values as $field=>$value)
+		{
+			if ($columns=="")
+				$columns=$field;
+			else
+				$columns.=",".$field;
+			if ($value_list=="")
+				$value_list="'$value'";
+			else
+				$value_list.=",'$value'";
+		}
+        $res=mysql_query("insert into $table ($columns) values ($value_list)",$this->con);
         if (mysql_error($this->con)=="")
         	$this->lastResult=$res;
         else
@@ -127,10 +159,24 @@ class CVMYSQLConnection extends CVObject implements CVDataConnection{
         else
         	return false;
 	}
-
-	public function doUpdate($table,$valuesList,$whereClause)
+	/**
+	 * (non-PHPdoc)
+	 * @see libcv/core/data/CVDataConnection#doUpdate($table, $values, $whereClause)
+	 */
+	public function doUpdate($table,$values,$whereClause)
     {
-        $res=mysql_query("update $table set $valuesList where $whereClause",$this->con);
+    	if (!$table || !$values || !is_array($values))
+			throw new CVException ("Error de formato en parametros en doUpdate");
+		$value_list="";
+		foreach($values as $field=>$value)
+		{
+			if ($value_list=="")
+				$value_list="$field='$value'";
+			else
+				$value_list.=",$field='$value'";
+		}
+		echo "update $table set $value_list where $whereClause";
+        $res=mysql_query("update $table set $value_list where $whereClause",$this->con);
         if (mysql_error($this->con)=="")
         	$this->lastResult=$res;
         else
@@ -140,7 +186,10 @@ class CVMYSQLConnection extends CVObject implements CVDataConnection{
         else
         	return false;
     }
-
+	/**
+	 * (non-PHPdoc)
+	 * @see libcv/core/data/CVDataConnection#doDelete($table, $whereClause)
+	 */
 	public function doDelete($table,$whereClause)
     {
         $res=mysql_query("delete from $table where $whereClause",$this->con);
@@ -153,6 +202,10 @@ class CVMYSQLConnection extends CVObject implements CVDataConnection{
         else
         	return false;
     }
+    /**
+     * (non-PHPdoc)
+     * @see libcv/core/data/CVDataConnection#lastId()
+     */
     public function lastId()
     {
     	$res=mysql_insert_id($this->con);

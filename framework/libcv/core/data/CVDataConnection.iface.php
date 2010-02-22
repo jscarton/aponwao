@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  * relacionales
  * @author Rafael Vivas
  * @version 15/06/2009
- * @package CORE::DATA
+ * @package CORE.DATA
  */
 interface CVDataConnection {
 
@@ -49,22 +49,20 @@ interface CVDataConnection {
     /**
      * Permite la realizacion de Inserts a la Base de Datos
      * @param $table tabla donde se va a realizar el insert
-     * @param $colNames lista separada por comas de los campos a insertar
-     * @param $values lista de valores contenidos entre ' ' y separados por comas  
-     * @return CVPGSQLRecordSet Devuelve el objeto para realizar las diversas operaciones 
-     * al registro.
+     * @param $values array asociativo del tipo 'campo'=>'valor'  
+     * @return boolean true si tuvo exito o false en caso contrario.
      */
     
-    public function doInsert($table,$colnames,$values);
+    public function doInsert($table=false,$values=false);
 
     /**
      * Permite la realizacion de Updates a la Base de Datos
      * @param $table nombre de la tabla a actualizar
-     * @param $valueList lista de campos y valores a modificar separadas por comas
+     * @param $values array asociativo del tipo 'campo'=>'valor'
      * @param $whereClause clausulas a anexar  despues de where
      * @return boolean true si tuvo exito o false en caso contrario
      */
-    public function doUpdate($table,$valuesList,$whereClause);
+    public function doUpdate($table,$values,$whereClause);
 
     /**
      * Permite la realizacion de Deletes a la Base de Datos
