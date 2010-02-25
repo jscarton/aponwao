@@ -1,5 +1,0 @@
-#summary Desarrollo de una Aplicación de Ejemplo usando Webservices
-
-= Contenido Bloqueado =
-
-_*El administrador ha bloqueado el contenido de esta sección.*_
