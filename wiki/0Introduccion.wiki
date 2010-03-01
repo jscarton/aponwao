@@ -1,4 +1,4 @@
-#Breve introducción a los conceptos de Frameworks de programación y Aponwao Framework.
+# Breve introducción a los conceptos de Frameworks de programación y Aponwao Framework.
 
 =Introducción a los Frameworks PHP=
 
@@ -59,7 +59,7 @@ Los beneficios que puede obtener una compañía que adopte SOA son:
   # Mejora en los tiempos de realización de cambios en procesos. 
   
  
-  * Aponwao Framework está basado principalmente en los siguientes conceptos:*
+*Aponwao Framework está basado principalmente en los siguientes conceptos:*
 
   * Compatible con muchas plataformas. 
   * Fácil de instalar y configurar. 
@@ -99,7 +99,7 @@ Características comunes de Aplicaciones Web automatizadas por Aponwao:
 
 En el Proyecto Aponwao, creemos en el Software Libre y de Código Fuente Abierto. Por esta razón utilizamos algunos proyectos destacados en sus respectivas áreas de conocimiento para complementar la funcionalidad de Aponwao Framework: 
   
-  * PROPEL: Framework ORM. [http://propel.phpdb.org]
+  * PROPEL: Framework ORM. [http://propel.phpdb.org PROPEL]
   * WSHELPER: Publicar y Proveer Servicios Web basados en SOAP. 
   * NUSOAP: Consumo de Servicios Web desde PHP5. 
   * PHPDOCUMENTOR: Documentación del Código Fuente. 
