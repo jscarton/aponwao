@@ -39,7 +39,7 @@ class tagRegistration {
 
 
 class IPXSLTemplate {
-	const NAMESPACE 	= "http://schema.jool.nl/xmltemplate/";
+	//const NAMESPACE 	= "http://schema.jool.nl/xmltemplate/";
 	public $dom 		= null;
 	public $xsltproc 	= null;
 	public $customTags 	= Array();

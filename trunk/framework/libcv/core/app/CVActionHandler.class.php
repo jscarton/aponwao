@@ -119,10 +119,11 @@ abstract class CVActionHandler extends CVObject
 	 * @return unknown_type
 	 */
 	public function render($direct=false)
-	{		
-		$mlayout=($this->useLayout)?$this->useLayout : "main.html";
+	{
+            
+		$mlayout=($this->useLayout)?$this->useLayout : "main.html";                
 		if (file_exists(APP_ROOT."/resources/atpl/$mlayout") && !$direct)
-		{			
+		{                        
 			$output=null;
 			$output=new CVView($mlayout);
 			$output->setTemplate($mlayout);
@@ -133,16 +134,25 @@ abstract class CVActionHandler extends CVObject
 		}
 		else
 		{
-			echo $this->getRenderedContent();
+			echo $this->getRenderedContent(true);
+
 		}
 	}	
 	/**
 	 * obtiene el contenido renderizado resultado de la ejecucion de una accion
+         * @param clear si es verdadero limpia el buffer de contenido generado
 	 * @return string
 	 */
-	public function getRenderedContent()
-	{			
-		return $this->rendered;
+	public function getRenderedContent($clear=false)
+	{
+                if(!$clear)
+                    return $this->rendered;
+                else
+                {
+                    $ret=$this->rendered;
+                    $this->rendered=false;
+                    return $ret;
+                }
 	}
 	/**
 	 * crea una redireccion 301 para la peticion actual 
