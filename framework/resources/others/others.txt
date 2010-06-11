@@ -1,0 +1,1 @@
+coloque aqui los archivos que no entren en otra clasificacion (que no sean atpl, css,js, images, etc)

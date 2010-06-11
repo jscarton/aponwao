@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //definicion de constantes
 define("APP_ROOT",dirname(__FILE__));
 //switche para el reporte de errores
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 require_once "libcv/CVFramework.php";
 //se inicia el manejador de sesiones
 session_start();
