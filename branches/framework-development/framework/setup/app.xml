@@ -15,7 +15,7 @@
 		<main>
 			<defaultAction>index</defaultAction>
 			<actions>
-				<index>HolaMundoAction</index>				
+				<index>HolaMundoAction</index>                                
 			</actions>
 		</main>
 	</controllers>

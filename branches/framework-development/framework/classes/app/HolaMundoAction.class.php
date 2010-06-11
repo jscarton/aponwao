@@ -56,6 +56,6 @@ class HolaMundoAction extends CVActionHandler
 		{
 			throw $ex;
 		}				
-	}				 
+	}
 }
 ?>
