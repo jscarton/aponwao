@@ -1,8 +1,0 @@
-<?php
-// We'll be outputting a Serialized PHP Array
-header('Content-type: text');
-if (isset($ctx->isEncoded))
-    echo base64_encode(serialize($ctx->Return));
-else
-    echo serialize($ctx->Return);
-?>
